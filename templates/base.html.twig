@@ -28,7 +28,7 @@
                 <li><a href="/addPost" class="nav-link px-2 link-secondary">New post</a></li>
             {% endif %}
             {% if is_granted('ROLE_MODERATOR') %}
-                <li><a href="/admin" class="nav-link px-2 link-danger">Moderation</a></li>
+                <li><a href="/moderator" class="nav-link px-2 link-danger">Moderation</a></li>
             {% endif %}
             {% if is_granted('ROLE_ADMIN') %}
             <li><a href="/admin" class="nav-link px-2 link-danger">Administration</a></li>

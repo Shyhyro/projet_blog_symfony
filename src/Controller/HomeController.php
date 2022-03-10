@@ -20,11 +20,18 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/onePost', name: 'onepost', methods: ['GET'])]
-    public function onepost(EntityManagerInterface $em) : Response
+    #[Route('/onePost_{id}', name: 'onepost', methods: ['GET'])]
+    public function onepost(Post $post, EntityManagerInterface $em) : Response
     {
-        $id = $_GET['id'];
+        return $this->render("./home/post.html.twig", [
+            'post' => $post
+        ]);
+    }
 
-        $post = $em->getRepository(Post::class)->findOneBy($id);
+    #[Route('/moderator', name: "Moderation", methods: ['GET'])]
+    public function moderator() : Response
+    {
+        return $this->render("./moderator/moderator.html.twig", [
+        ]);
     }
 }
