@@ -6,7 +6,7 @@
         {% for post in posts %}
             <div class="col-md-6">
                 <details class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 col p-4 d-flex flex-column">
-                    <summary><a href="#" data-id="{{ post.id }}" class="link-info">{{ post.title }}</a> | by {{ post.userFk}} </summary>
+                    <summary><a href="/onePost?id={{ post.id }}" class="link-info">{{ post.title }}</a> | by {{ post.userFk}} </summary>
                     <p>{{ post.content }}</p>
                 </details>
             </div>

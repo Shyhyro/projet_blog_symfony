@@ -20,4 +20,11 @@ class HomeController extends AbstractController
         ]);
     }
 
+    #[Route('/onePost', name: 'onepost', methods: ['GET'])]
+    public function onepost(EntityManagerInterface $em) : Response
+    {
+        $id = $_GET['id'];
+
+        $post = $em->getRepository(Post::class)->findOneBy($id);
+    }
 }
