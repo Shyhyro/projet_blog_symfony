@@ -7,14 +7,18 @@
             <div class="col-md-6">
                 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-primary">{{ post.userFk }}</strong>
+                        <div>
+                            {% trans %}By{% endtrans%}
+                            <img class="avatar" alt="Profil Picture" src="https://freesvg.org/img/Placeholder.png">
+                            <strong class="d-inline-block mb-2 text-primary">{{ post.userFk }}</strong>
+                        </div>
                         <h3 class="mb-0">{{ post.title }}</h3>
-                        <div class="mb-1 text-muted">Feb 10</div>
+                        {# <div class="mb-1 text-muted">Feb 10</div> #}
                         <p class="card-text mb-auto">{{ post.content }}</p>
-                        <a class="stretched-link" href="{{ path('onepost', {"id": post.id}) }}">Read More</a>
+                        <a class="stretched-link" href="{{ path('onepost', {"id": post.id}) }}">{% trans %}Read More{% endtrans %}</a>
                     </div>
                     <div class="col-auto d-none d-lg-block">
-                        <img height="300px" src="https://freesvg.org/img/Placeholder.png">
+                        <img alt="Image" height="300px" src="https://freesvg.org/img/Placeholder.png">
                     </div>
                 </div>
             </div>
