@@ -21,6 +21,7 @@ class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $post->setUserFk($this->getUser());
             $entityManager->persist($post);
             $entityManager->flush();
         }

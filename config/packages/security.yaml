@@ -35,6 +35,7 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/moderator, roles: ROLE_MODERATOR }
+        - { path: ^/addPost, roles: ROLE_AUTHOR }
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

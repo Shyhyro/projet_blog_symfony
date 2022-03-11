@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Commentary;
 use App\Entity\Post;
+use App\Form\CommentaryFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -20,11 +23,23 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/onePost_{id}', name: 'onepost', methods: ['GET'])]
-    public function onepost(Post $post, EntityManagerInterface $em) : Response
+    #[Route('/onePost_{id}', name: 'onepost')]
+    public function onepost(Post $post, Request $request, EntityManagerInterface $em) : Response
     {
+        $commentary = new Commentary();
+        $form = $this->createForm(CommentaryFormType::class, $commentary);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $commentary->setUserFk($this->getUser())->setPostFk($post)->setDate(new \DateTime());
+            $em->persist($commentary);
+            $em->flush();
+        }
+
         return $this->render("./home/post.html.twig", [
-            'post' => $post
+            'post' => $post,
+            'form' => $form->createView(),
         ]);
     }
 
